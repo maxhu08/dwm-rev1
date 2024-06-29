@@ -8,3 +8,4 @@ Patches include so far:
 - `resizehere` - https://dwm.suckless.org/patches/resizehere
 - `vanitygaps` - https://dwm.suckless.org/patches/vanitygaps
 - `statusallmons` - https://dwm.suckless.org/patches/statusallmons
+- `pertag` - https://dwm.suckless.org/patches/pertag
