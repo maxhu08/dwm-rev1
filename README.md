@@ -6,3 +6,4 @@ Patches include so far:
 
 - `movestack` - https://dwm.suckless.org/patches/movestack
 - `resizehere` - https://dwm.suckless.org/patches/resizehere
+- `vanitygaps` - https://dwm.suckless.org/patches/vanitygaps
