@@ -1,0 +1,61 @@
+From d2824944615917697c18555a397bf84f2249a722 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Gutyina=20Gerg=C5=91?= <gutyina.gergo.2@gmail.com>
+Date: Thu, 24 Aug 2023 15:06:56 +0200
+Subject: [PATCH] Resize clients without wrapping the pointer
+
+---
+ dwm.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/dwm.c b/dwm.c
+index f1d86b2..8c661a2 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -1300,7 +1300,7 @@ resizeclient(Client *c, int x, int y, int w, int h)
+ void
+ resizemouse(const Arg *arg)
+ {
+-	int ocx, ocy, nw, nh;
++	int x, y, ocw, och, nw, nh;
+ 	Client *c;
+ 	Monitor *m;
+ 	XEvent ev;
+@@ -1311,12 +1311,13 @@ resizemouse(const Arg *arg)
+ 	if (c->isfullscreen) /* no support resizing fullscreen windows by mouse */
+ 		return;
+ 	restack(selmon);
+-	ocx = c->x;
+-	ocy = c->y;
++	ocw = c->w;
++	och = c->h;
+ 	if (XGrabPointer(dpy, root, False, MOUSEMASK, GrabModeAsync, GrabModeAsync,
+ 		None, cursor[CurResize]->cursor, CurrentTime) != GrabSuccess)
+ 		return;
+-	XWarpPointer(dpy, None, c->win, 0, 0, 0, 0, c->w + c->bw - 1, c->h + c->bw - 1);
++	if(!getrootptr(&x, &y))
++		return;
+ 	do {
+ 		XMaskEvent(dpy, MOUSEMASK|ExposureMask|SubstructureRedirectMask, &ev);
+ 		switch(ev.type) {
+@@ -1330,8 +1331,8 @@ resizemouse(const Arg *arg)
+ 				continue;
+ 			lasttime = ev.xmotion.time;
+ 
+-			nw = MAX(ev.xmotion.x - ocx - 2 * c->bw + 1, 1);
+-			nh = MAX(ev.xmotion.y - ocy - 2 * c->bw + 1, 1);
++			nw = MAX(ocw + (ev.xmotion.x - x), 1);
++			nh = MAX(och + (ev.xmotion.y - y), 1);
+ 			if (c->mon->wx + nw >= selmon->wx && c->mon->wx + nw <= selmon->wx + selmon->ww
+ 			&& c->mon->wy + nh >= selmon->wy && c->mon->wy + nh <= selmon->wy + selmon->wh)
+ 			{
+@@ -1344,7 +1345,6 @@ resizemouse(const Arg *arg)
+ 			break;
+ 		}
+ 	} while (ev.type != ButtonRelease);
+-	XWarpPointer(dpy, None, c->win, 0, 0, 0, 0, c->w + c->bw - 1, c->h + c->bw - 1);
+ 	XUngrabPointer(dpy, CurrentTime);
+ 	while (XCheckMaskEvent(dpy, EnterWindowMask, &ev));
+ 	if ((m = recttomon(c->x, c->y, c->w, c->h)) != selmon) {
+-- 
+2.41.0
+
