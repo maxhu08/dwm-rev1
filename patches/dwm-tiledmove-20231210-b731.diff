@@ -1,5 +1,19 @@
---- dwm.c
-+++ dwm.c
+From 427c5fef13676179621949f0a8a4036e49d4b74e Mon Sep 17 00:00:00 2001
+From: Niki <>
+Date: Sun, 10 Dec 2023 00:29:59 +0000
+Subject: [PATCH] The function `movemouse` now doesn't force clients to be
+ floating.
+
+Tiling clients when moved will swap with any existing clients that
+overlap with the cursor, and snap to other monitors.
+---
+ dwm.c | 56 +++++++++++++++++++++++++++++++++++++++++++++++++++++---
+ 1 file changed, 53 insertions(+), 3 deletions(-)
+
+diff --git a/dwm.c b/dwm.c
+index d12be2d..b1023e0 100644
+--- a/dwm.c
++++ b/dwm.c
 @@ -1189,11 +1189,60 @@ movemouse(const Arg *arg)
  				ny = selmon->wy;
  			else if (abs((selmon->wy + selmon->wh) - (ny + HEIGHT(c))) < snap)
@@ -64,3 +78,6 @@
  			break;
  		}
  	} while (ev.type != ButtonRelease);
+-- 
+2.43.0
+

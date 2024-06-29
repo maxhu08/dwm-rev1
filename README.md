@@ -9,3 +9,4 @@ Patches include so far:
 - `vanitygaps` - https://dwm.suckless.org/patches/vanitygaps
 - `statusallmons` - https://dwm.suckless.org/patches/statusallmons
 - `pertag` - https://dwm.suckless.org/patches/pertag
+- `tiledmove` - https://dwm.suckless.org/patches/tiledmove
