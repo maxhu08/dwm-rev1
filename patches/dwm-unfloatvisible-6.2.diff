@@ -1,0 +1,38 @@
+From a972569532c9d46f79776b0f687ebbbd67a6b69f Mon Sep 17 00:00:00 2001
+From: Alexander Courtis <alex@courtis.org>
+Date: Mon, 22 Apr 2019 22:23:12 +1000
+Subject: [PATCH] unfloat any visible windows which have isfloating set
+
+optionally takes a layout to also apply
+
+e.g.
+{ MODKEY|ShiftMask, XK_space, unfloatvisible, {0} },
+{ MODKEY|ShiftMask, XK_t,     unfloatvisible, {.v = &layouts[1]} },
+---
+ unfloat.c | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+ create mode 100644 unfloat.c
+
+diff --git a/unfloat.c b/unfloat.c
+new file mode 100644
+index 0000000..ef84111
+--- /dev/null
++++ b/unfloat.c
+@@ -0,0 +1,14 @@
++void
++unfloatvisible(const Arg *arg)
++{
++    Client *c;
++
++    for (c = selmon->clients; c; c = c->next)
++        if (ISVISIBLE(c) && c->isfloating)
++            c->isfloating = c->isfixed;
++
++    if (arg && arg->v)
++        setlayout(arg);
++    else
++        arrange(selmon);
++}
+-- 
+2.21.0
+

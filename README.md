@@ -10,3 +10,4 @@ Patches include so far:
 - `statusallmons` - https://dwm.suckless.org/patches/statusallmons
 - `pertag` - https://dwm.suckless.org/patches/pertag
 - `tiledmove` - https://dwm.suckless.org/patches/tiledmove
+- `unfloatvisible` - https://dwm.suckless.org/patches/unfloatvisible

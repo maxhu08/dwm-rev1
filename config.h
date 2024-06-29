@@ -41,6 +41,7 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 #define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
 #include "vanitygaps.c"
+#include "unfloat.c"
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -99,11 +100,12 @@ static const Key keys[] = {
   { MODKEY|ShiftMask,             XK_h,      setcfact,       {.f = +0.25} },                    // adjust cfact MOD+H
   { MODKEY|ShiftMask,             XK_l,      setcfact,       {.f = -0.25} },                    // adjust cfact MOD+L
   { MODKEY|ShiftMask,             XK_o,      setcfact,       {.f =  0.00} },                    // adjust cfact MOD+O
-  { MODKEY,                       XK_Return, zoom,           {0} },
+  { MODKEY,                       XK_Return, zoom,           {0} },                             // MOD+Return
   { MODKEY|ALTKEY,                XK_u,      incrgaps,       {.i = +10 } },                     // adjust gaps MOD+ALT+u
   { MODKEY|ALTKEY|ShiftMask,      XK_u,      incrgaps,       {.i = -10 } },                     // adjust gaps MOD+ALT+U
-  { MODKEY,                       XK_Tab,    view,           {0} },                             // tab tag
-  { MODKEY,                       XK_c,      killclient,     {0} },                             // close window
+  { MODKEY,                       XK_Tab,    view,           {0} },                             // tab tag MOD+Tab
+  { MODKEY,                       XK_c,      killclient,     {0} },                             // close window MOD+c
+  { MODKEY|ShiftMask,             XK_t,      unfloatvisible, {.v = &layouts[0]} },              // make floating window tiled MOD+T
   { MODKEY|ALTKEY,                XK_1,      setlayout,      {.v = &layouts[0]} },              // change layout to tile MOD+ALT+1
   { MODKEY|ALTKEY,                XK_2,      setlayout,      {.v = &layouts[13]} },             // change layout to float MOD+ALT+2
   { MODKEY|ALTKEY,                XK_3,      setlayout,      {.v = &layouts[1]} },              // change layout to monocle MOD+ALT+3
@@ -111,8 +113,6 @@ static const Key keys[] = {
   { MODKEY|ALTKEY,                XK_5,      setlayout,      {.v = &layouts[5]} },              // change layout to bstac MOD+ALT+5
   { MODKEY|ALTKEY,                XK_6,      setlayout,      {.v = &layouts[7]} },              // change layout to grid MOD+ALT+6
   { MODKEY|ALTKEY,                XK_7,      setlayout,      {.v = &layouts[2]} },              // change layout to spiral MOD+ALT+7
-  // { MODKEY,                       XK_space,  setlayout,      {0} },
-  // { MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
   { MODKEY,                       XK_0,      view,           {.ui = ~0 } },                     // view all windows MOD+0
   { MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },                     // make window on all tags MOD+SHIFT+0
   { MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },                      // move window to monitor MOD+,
