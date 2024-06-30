@@ -1,6 +1,6 @@
 # dwm-rev1
 
-This is a revision of my build of dwm. It is built off of `dwm-6.5`
+This is a revision of my build of dwm. It is built off of `dwm-6.5`. I made this because my previous build of dwm was a little bit buggy and I decided it would be better to leave it as is, and make a completely new build of dwm in a seperate repo, which is what this is.
 
 ## patches
 
@@ -34,3 +34,11 @@ then add this to your `~/.xinitrc`
 ```
 exec dwm
 ```
+
+## showcase
+
+![1](./screenshots/1.png)
+
+![2](./screenshots/2.png)
+
+![3](./screenshots/3.png)

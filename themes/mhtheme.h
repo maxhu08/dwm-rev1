@@ -5,4 +5,4 @@ static const char col_gray1[] = "#0a0a0a";
 static const char col_gray2[] = "#171717";
 static const char col_gray3[] = "#cdd6f4";
 static const char col_gray4[] = "#0a0a0a";
-static const char col_accnt[] = "#06b6d4";
+static const char col_accnt[] = "#99f6e4";
