@@ -1,6 +1,25 @@
---- dwm.c
-+++ dwm.c
-@@ -486,7 +487,7 @@ cleanup(void)
+diff --git a/dwm.c b/dwm.c
+index a96f33c..24b1eeb 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -163,6 +163,7 @@ static void detachstack(Client *c);
+ static Monitor *dirtomon(int dir);
+ static void drawbar(Monitor *m);
+ static void drawbars(void);
++static int drawstatusbar(Monitor *m, int bh, char* text);
+ static void enternotify(XEvent *e);
+ static void expose(XEvent *e);
+ static void focus(Client *c);
+@@ -237,7 +238,7 @@ static void zoom(const Arg *arg);
+ 
+ /* variables */
+ static const char broken[] = "broken";
+-static char stext[256];
++static char stext[1024];
+ static int screen;
+ static int sw, sh;           /* X display screen geometry width, height */
+ static int bh, blw = 0;      /* bar geometry */
+@@ -485,7 +486,7 @@ cleanup(void)
  		cleanupmon(mons);
  	for (i = 0; i < CurLast; i++)
  		drw_cur_free(drw, cursor[i]);
@@ -9,7 +28,7 @@
  		free(scheme[i]);
  	XDestroyWindow(dpy, wmcheckwin);
  	drw_free(drw);
-@@ -694,6 +695,114 @@ dirtomon(int dir)
+@@ -693,6 +694,114 @@ dirtomon(int dir)
  	return m;
  }
  
@@ -124,7 +143,7 @@
  void
  drawbar(Monitor *m)
  {
-@@ -708,9 +817,7 @@ drawbar(Monitor *m)
+@@ -707,9 +816,7 @@ drawbar(Monitor *m)
  
  	/* draw status first so it can be overdrawn by tags later */
  	if (m == selmon) { /* status is only drawn on selected monitor */
@@ -135,7 +154,7 @@
  	}
  
  	for (c = m->clients; c; c = c->next) {
-@@ -1572,7 +1679,8 @@ setup(void)
+@@ -1571,7 +1678,8 @@ setup(void)
  	cursor[CurResize] = drw_cur_create(drw, XC_sizing);
  	cursor[CurMove] = drw_cur_create(drw, XC_fleur);
  	/* init appearance */
