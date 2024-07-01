@@ -107,7 +107,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_bracketright,       setborderpx,    {.i = +2 } },                                      // decrease border width MOD+}
 	{ MODKEY,                       XK_Tab,                view,           {0} },                                             // tab tag MOD+Tab
 	{ MODKEY,                       XK_c,                  killclient,     {0} },                                             // close window MOD+c
-	{ MODKEY|ShiftMask,             XK_t,                  unfloatvisible, {.v = &layouts[0]} },                              // make floating window tiled MOD+T
+	{ MODKEY|ShiftMask,             XK_z,                  unfloatvisible, {.v = &layouts[0]} },                              // make floating window tiled MOD+Z
 	{ MODKEY|ALTKEY,                XK_1,                  setlayout,      {.v = &layouts[0]} },                              // change layout to tile MOD+ALT+1
 	{ MODKEY|ALTKEY,                XK_2,                  setlayout,      {.v = &layouts[13]} },                             // change layout to float MOD+ALT+2
 	{ MODKEY|ALTKEY,                XK_3,                  setlayout,      {.v = &layouts[1]} },                              // change layout to monocle MOD+ALT+3

@@ -17,7 +17,7 @@ This is a revision of my build of dwm. It is built off of `dwm-6.5`. I made this
 - `tiledmove` https://dwm.suckless.org/patches/tiledmove
   - makes it so MOD+lmb allows windows to stay tiled while moving them
 - `unfloatvisible` https://dwm.suckless.org/patches/unfloatvisible
-  - make floating window tiled again with MOD+T
+  - make floating window tiled again with MOD+Z
 - `status2d` https://dwm.suckless.org/patches/status2d
   - add color support and more to dwm status bar
 - `setborderpx` https://dwm.suckless.org/patches/setborderpx
