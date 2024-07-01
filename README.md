@@ -20,6 +20,8 @@ This is a revision of my build of dwm. It is built off of `dwm-6.5`. I made this
   - make floating window tiled again with MOD+T
 - `status2d` https://dwm.suckless.org/patches/status2d
   - add color support and more to dwm status bar
+- `setborderpx` https://dwm.suckless.org/patches/setborderpx
+  - make it so that MOD+{ & MOD+} decrease and increase the border width
 
 ## quick-start
 

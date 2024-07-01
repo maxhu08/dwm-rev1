@@ -1,5 +1,19 @@
---- dwm.c	2020-05-12 02:17:20.070933833 +0200
-+++ dwm.c	2020-05-14 00:17:35.047919771 +0200
+diff -up a/config.def.h b/config.def.h
+--- a/config.def.h	2020-05-12 02:17:20.070933833 +0200
++++ b/config.def.h	2020-05-13 03:27:51.018695798 +0200
+@@ -84,6 +84,9 @@ static Key keys[] = {
+ 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
+ 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
+ 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
++	{ MODKEY|ShiftMask,             XK_minus, 		setborderpx,    {.i = -1 } },
++	{ MODKEY|ShiftMask,             XK_plus, 		setborderpx,    {.i = +1 } },
++	{ MODKEY|ShiftMask,             XK_numbersign, 	setborderpx,    {.i = 0 } },
+ 	TAGKEYS(                        XK_1,                      0)
+ 	TAGKEYS(                        XK_2,                      1)
+ 	TAGKEYS(                        XK_3,                      2)
+diff -up a/dwm.c b/dwm.c
+--- a/dwm.c	2020-05-12 02:17:20.070933833 +0200
++++ b/dwm.c	2020-05-14 00:17:35.047919771 +0200
 @@ -119,6 +119,7 @@ struct Monitor {
  	int by;               /* bar geometry */
  	int mx, my, mw, mh;   /* screen size */
@@ -8,7 +22,15 @@
  	unsigned int seltags;
  	unsigned int sellt;
  	unsigned int tagset[2];
-@@ -639,6 +641,7 @@ createmon(void)
+@@ -196,6 +197,7 @@ static void run(void);
+ static void scan(void);
+ static int sendevent(Client *c, Atom proto);
+ static void sendmon(Client *c, Monitor *m);
++static void setborderpx(const Arg *arg);
+ static void setclientstate(Client *c, long state);
+ static void setfocus(Client *c);
+ static void setfullscreen(Client *c, int fullscreen);
+@@ -638,6 +640,7 @@ createmon(void)
  	m->nmaster = nmaster;
  	m->showbar = showbar;
  	m->topbar = topbar;
@@ -16,7 +38,7 @@
  	m->lt[0] = &layouts[0];
  	m->lt[1] = &layouts[1 % LENGTH(layouts)];
  	strncpy(m->ltsymbol, layouts[0].symbol, sizeof m->ltsymbol);
-@@ -1048,7 +1051,7 @@ manage(Window w, XWindowAttributes *wa)
+@@ -1047,7 +1050,7 @@ manage(Window w, XWindowAttributes *wa)
  	/* only fix client y-offset, if the client center might cover the bar */
  	c->y = MAX(c->y, ((c->mon->by == c->mon->my) && (c->x + (c->w / 2) >= c->mon->wx)
  		&& (c->x + (c->w / 2) < c->mon->wx + c->mon->ww)) ? bh : c->mon->my);
@@ -25,7 +47,7 @@
  
  	wc.border_width = c->bw;
  	XConfigureWindow(dpy, w, CWBorderWidth, &wc);
-@@ -1425,6 +1428,40 @@ sendmon(Client *c, Monitor *m)
+@@ -1424,6 +1427,40 @@ sendmon(Client *c, Monitor *m)
  }
  
  void
