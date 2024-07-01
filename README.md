@@ -22,6 +22,8 @@ This is a revision of my build of dwm. It is built off of `dwm-6.5`. I made this
   - add color support and more to dwm status bar
 - `setborderpx` https://dwm.suckless.org/patches/setborderpx
   - make it so that MOD+{ & MOD+} decrease and increase the border width
+- `alwayscenter` https://dwm.suckless.org/patches/alwayscenter
+  - makes it so that floating windows always start centered instead of in the top-left corner, also changed it to take into account the height of the bar
 
 ## quick-start
 
