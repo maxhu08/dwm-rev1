@@ -24,6 +24,8 @@ This is a revision of my build of dwm. It is built off of `dwm-6.5`. I made this
   - make it so that MOD+{ & MOD+} decrease and increase the border width
 - `alwayscenter` https://dwm.suckless.org/patches/alwayscenter
   - makes it so that floating windows always start centered instead of in the top-left corner, also changed it to take into account the height of the bar
+- `actualfullscreen` https://dwm.suckless.org/patches/actualfullscreen
+  - make its so that MOD+f makes window fullscreen
 
 ## quick-start
 
