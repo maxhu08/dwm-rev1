@@ -9,7 +9,7 @@ static const unsigned int gappiv    = 0;        // vert inner gap between window
 static const unsigned int gappoh    = 0;        // horiz outer gap between windows and screen edge
 static const unsigned int gappov    = 0;        // vert outer gap between windows and screen edge
 static       int smartgaps          = 0;        // 1 means no outer gap when there is only one window
-static const int showbar            = 1;        // 0 means no bar
+static const int showbar            = 0;        // 0 means no bar ! CHANGED FROM DEFAULT
 static const int topbar             = 1;        // 0 means bottom bar
 static const char *fonts[]          = { "Jetbrains Mono NerdFont:size=12:style=Bold", "monospace:size=12" };
 static const char dmenufont[]       = "Jetbrains Mono NerdFont:size=12:style=Bold";
@@ -86,6 +86,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_Return,             spawn,          {.v = termcmd } },                                 // spawn terminal MOD+return
 	{ MODKEY,                       XK_s,                  spawn,          SHCMD("exec ~/.hidden/scripts/screenshot_multimon.sh") },       // screenshot MOD+s (requires script in ~/Dev/scripts/screenshot.sh)
 	{ MODKEY|ShiftMask,             XK_s,                  spawn,          SHCMD("exec ~/.hidden/scripts/screenshot_crop.sh") },           // screenshot MOD+S (requires script in ~/Dev/scripts/screenshot_crop.sh)
+  { MODKEY|ShiftMask,             XK_equal,              spawn,          SHCMD("exec ~/.hidden/scripts/emoji_picker.sh") },              // pick emoji MOD++ (requires script in ~/Dev/scripts/emoji_picker.sh)
 	{ MODKEY,                       XK_e,                  spawn,          SHCMD("exec nemo") },                              // open file manager (nemo) MOD+e
 	{ MODKEY,                       XK_b,                  togglebar,      {0} },                                             // show hide bar MOD+b
 	{ MODKEY|ALTKEY|ShiftMask,      XK_l,                  spawn,          SHCMD("exec slock") },                             // lockscreen MOD+ALT+L
